@@ -21,17 +21,31 @@ public class tictactoe{
             int row = input.nextInt(); //gets the player input
             int col = input.nextInt();
             board[row][col] = 1;
+            turns++;
             if(checkWin()){ //checks if the player wins
                 System.out.println("You win!");
                 break;
             }
-            //comp turn
+            if(turns > 9){ //if the game somehow makes it to the end without anyone winning
+                break;    
+            }
+            
+            //com turn
+            printBoard(board);
+            System.out.println("Deciding...");
+            comTurn();
+            turns++;
+            if(checkWin()){
+                System.out.println("You lose...");
+                break;
+            }
         }
         if(turns > 9)
             System.out.println("It's a tie!");
     }
     public static void comTurn(){
-        for(int i=0; i<3; i++){ //checks the rows if it can win or block you from winning
+        //checks the rows if it can win or block you from winning
+        for(int i=0; i<3; i++){
             if(board[i][0] == board[i][1] && board[i][0] != 0){
                 board[i][2] = 2;    
                 return;
@@ -45,7 +59,9 @@ public class tictactoe{
                 return;
             }
         }
-        for(int j=0; j<3; j++){ //checks the columns if it can win or block you from winning
+        
+        //checks the columns if it can win or block you from winning
+        for(int j=0; j<3; j++){
             if(board[0][j] == board[1][j] && board[0][j] != 0){
                 board[2][j] = 2;
                 return;
@@ -59,6 +75,35 @@ public class tictactoe{
                 return;
             }
         }
+        
+        //checks the left diagonal if it can win or block you from winning
+        if(board[0][0] == board[1][1] && board[0][0] != 0){
+            board[2][2] = 2;
+            return;
+        }
+        if(board[1][1] == board[2][2] && board[1][1] != 0){
+            board[0][0] = 2;
+            return;
+        }
+        if(board[0][0] == board[2][2] && board[0][0] != 0){
+            board[1][1] = 2;
+            return;
+        }
+        
+        //checks the right diagonal if it can win or block you from winning
+        if(board[0][2] == board[1][1] && board[0][2] != 0){
+            board[2][0] = 2;
+            return;
+        }
+        if(board[1][1] == board[2][0] && board[1][1] != 0){
+            board[0][2] = 2;
+            return;
+        }
+        if(board[0][2] == board[2][0] && board[1][1] != 0){
+            board[1][1] = 0;
+            return;
+        }
+        
         
     }
     public static boolean checkWin(){
