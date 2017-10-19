@@ -7,7 +7,7 @@ public class tictactoe{
         System.out.println("[0 0]\t[0 1]\t[0 2]");
         System.out.println("[1 0]\t[1 1]\t[1 2]");
         System.out.println("[2 0]\t[2 1]\t[2 2]");
-        while(turns <= 9){
+        while(turns < 9){
             if(turns == 0){ //if it is the first turn, then it prints out the instruction board
                 System.out.println("[0 0]\t[0 1]\t[0 2]");
                 System.out.println("[1 0]\t[1 1]\t[1 2]");
@@ -26,7 +26,7 @@ public class tictactoe{
                 System.out.println("You win!");
                 break;
             }
-            if(turns > 9){ //if the game somehow makes it to the end without anyone winning
+            if(turns >= 9){ //if the game somehow makes it to the end without anyone winning
                 break;    
             }
             
@@ -41,7 +41,7 @@ public class tictactoe{
             }
         }
         printBoard(board);
-        if(turns > 9)
+        if(turns >= 9)
             System.out.println("It's a tie!");
     }
     public static void comTurn(){
