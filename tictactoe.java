@@ -17,7 +17,7 @@ public class tictactoe{
                 printBoard(board);
             
             //player turn
-            System.out.println("Select a position, using coordinates. (Ex. 0 0 represents the top left, 1 2 represents the bottom middle.)");
+            System.out.println("Select a position, using coordinates. (Ex. 0 0 represents the top left, 1 2 represents the middle right.)");
             int row = input.nextInt(); //gets the player input
             int col = input.nextInt();
             board[row][col] = 1;
