@@ -40,6 +40,7 @@ public class tictactoe{
                 break;
             }
         }
+        printBoard(board);
         if(turns > 9)
             System.out.println("It's a tie!");
     }
@@ -104,23 +105,55 @@ public class tictactoe{
             return;
         }
         
+        //checks if the centerpiece is open; if it is it will take that as a priority
+        if(board[1][1] == 0){
+            board[1][1] = 2;
+            return;
+        }
         
+        //checks if the corners are open; if they are it will take them as a priority
+        if(board[0][0] == 0){
+            board[0][0] = 2;
+            return;
+        }
+        if(board[0][2] == 0){
+            board[0][2] = 2;
+            return;
+        }
+        if(board[2][0] == 0){
+            board[2][0] = 2;
+            return;
+        }
+        if(board[2][2] == 0){
+            board[2][2] = 2;
+            return;
+        }
+        
+        //if none of these are available, choose a random square as a fail-safe
+        while(true){
+            int x = (int)(Math.random() * 3);
+            int y = (int)(Math.random() * 3);
+            if(board[x][y] == 0){
+                board[x][y] = 2;
+                return;
+            }
+        }
     }
     public static boolean checkWin(){
         for(int i=0; i<3; i++){ //vertical checks
-            if(board[i][0] == board[i][1] && board[i][1] == board[i][2]){
+            if(board[i][0] == board[i][1] && board[i][1] == board[i][2] && board[i][0] != 0){
                 return true;
             }
         }
         for(int j=0; j<3; j++){ //horizontal checks
-            if(board[0][j] == board[1][j] && board[1][j] == board[2][j]){
+            if(board[0][j] == board[1][j] && board[1][j] == board[2][j] && board[0][j] != 0){
                 return true;    
             }
         }
-        if(board[0][0] == board[1][1] && board[1][1] == board[2][2]){ //left diagonal check
+        if(board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] != 0){ //left diagonal check
             return true;
         }
-        if(board[0][2] == board[1][1] && board[1][1] == board[2][0]){ //right diagonal check
+        if(board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] != 0){ //right diagonal check
             return true;
         }
         return false; //if none of these are satisfied
