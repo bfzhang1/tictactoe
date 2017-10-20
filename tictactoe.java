@@ -4,9 +4,6 @@ public class tictactoe{
         Scanner input = new Scanner(System.in);
         int turns = 0;
         int[][] board = new int[3][3];
-        System.out.println("[0 0]\t[0 1]\t[0 2]");
-        System.out.println("[1 0]\t[1 1]\t[1 2]");
-        System.out.println("[2 0]\t[2 1]\t[2 2]");
         while(turns < 9){
             if(turns == 0){ //if it is the first turn, then it prints out the instruction board
                 System.out.println("[0 0]\t[0 1]\t[0 2]");
@@ -35,7 +32,7 @@ public class tictactoe{
             System.out.println("Deciding...");
             comTurn();
             turns++;
-            if(checkWin()){
+            if(checkWin()){ //checks if the A.I. wins
                 System.out.println("You lose...");
                 break;
             }
@@ -100,7 +97,7 @@ public class tictactoe{
             board[0][2] = 2;
             return;
         }
-        if(board[0][2] == board[2][0] && board[1][1] != 0){
+        if(board[0][2] == board[2][0] && board[0][2] != 0){
             board[1][1] = 2;
             return;
         }
@@ -131,7 +128,7 @@ public class tictactoe{
         
         //if none of these are available, choose a random square as a fail-safe
         while(true){
-            int x = (int)(Math.random() * 3);
+            int x = (int)(Math.random() * 3); //rand num between 0-2
             int y = (int)(Math.random() * 3);
             if(board[x][y] == 0){
                 board[x][y] = 2;
@@ -168,10 +165,13 @@ public class tictactoe{
             for(int j=0; j<3; j++){
                 System.out.print("\t");
                 if(board[i][j] == 1){
-                    System.out.println("X");  
+                    System.out.print("X");  
                 }
                 else if(board[i][j] == 2){
-                    System.out.println("O");
+                    System.out.print("O");
+                }
+                else{
+                    System.out.print(" ");
                 }
             }
             System.out.println();
