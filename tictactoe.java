@@ -12,27 +12,27 @@ public class tictactoe{
             }
             else //otherwise it prints out the actual board
                 printBoard(board);
-            
+
             //player turn
             System.out.println("Select a position, using coordinates. (Ex. 0 0 represents the top left, 1 2 represents the middle right.)");
             int row = input.nextInt(); //gets the player input
             int col = input.nextInt();
             board[row][col] = 1;
             turns++;
-            if(checkWin()){ //checks if the player wins
+            if(checkWin(board)){ //checks if the player wins
                 System.out.println("You win!");
                 break;
             }
             if(turns >= 9){ //if the game somehow makes it to the end without anyone winning
-                break;    
+                break;
             }
-            
+
             //com turn
             printBoard(board);
             System.out.println("Deciding...");
-            comTurn();
+            comTurn(board);
             turns++;
-            if(checkWin()){ //checks if the A.I. wins
+            if(checkWin(board)){ //checks if the A.I. wins
                 System.out.println("You lose...");
                 break;
             }
@@ -41,23 +41,23 @@ public class tictactoe{
         if(turns >= 9)
             System.out.println("It's a tie!");
     }
-    public static void comTurn(){
+    public static void comTurn(int[][] board){
         //checks the rows if it can win or block you from winning
         for(int i=0; i<3; i++){
             if(board[i][0] == board[i][1] && board[i][0] != 0){
-                board[i][2] = 2;    
+                board[i][2] = 2;
                 return;
             }
             else if(board[i][1] == board[i][2] && board[i][1] != 0){
-                board[i][0] = 2;    
+                board[i][0] = 2;
                 return;
             }
             else if(board[i][0] == board[i][2] && board[i][0] != 0){
-                board[i][1] = 2;    
+                board[i][1] = 2;
                 return;
             }
         }
-        
+
         //checks the columns if it can win or block you from winning
         for(int j=0; j<3; j++){
             if(board[0][j] == board[1][j] && board[0][j] != 0){
@@ -65,15 +65,15 @@ public class tictactoe{
                 return;
             }
             else if(board[1][j] == board[2][j] && board[1][j] != 0){
-                board[0][j] = 2;    
+                board[0][j] = 2;
                 return;
             }
             else if(board[0][j] == board[2][j] && board[0][j] != 0){
-                board[1][j] = 2;    
+                board[1][j] = 2;
                 return;
             }
         }
-        
+
         //checks the left diagonal if it can win or block you from winning
         if(board[0][0] == board[1][1] && board[0][0] != 0){
             board[2][2] = 2;
@@ -87,7 +87,7 @@ public class tictactoe{
             board[1][1] = 2;
             return;
         }
-        
+
         //checks the right diagonal if it can win or block you from winning
         if(board[0][2] == board[1][1] && board[0][2] != 0){
             board[2][0] = 2;
@@ -101,13 +101,13 @@ public class tictactoe{
             board[1][1] = 2;
             return;
         }
-        
+
         //checks if the centerpiece is open; if it is it will take that as a priority
         if(board[1][1] == 0){
             board[1][1] = 2;
             return;
         }
-        
+
         //checks if the corners are open; if they are it will take them as a priority
         if(board[0][0] == 0){
             board[0][0] = 2;
@@ -125,7 +125,7 @@ public class tictactoe{
             board[2][2] = 2;
             return;
         }
-        
+
         //if none of these are available, choose a random square as a fail-safe
         while(true){
             int x = (int)(Math.random() * 3); //rand num between 0-2
@@ -136,7 +136,7 @@ public class tictactoe{
             }
         }
     }
-    public static boolean checkWin(){
+    public static boolean checkWin(int[][] board){
         for(int i=0; i<3; i++){ //vertical checks
             if(board[i][0] == board[i][1] && board[i][1] == board[i][2] && board[i][0] != 0){
                 return true;
@@ -144,7 +144,7 @@ public class tictactoe{
         }
         for(int j=0; j<3; j++){ //horizontal checks
             if(board[0][j] == board[1][j] && board[1][j] == board[2][j] && board[0][j] != 0){
-                return true;    
+                return true;
             }
         }
         if(board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] != 0){ //left diagonal check
@@ -161,11 +161,11 @@ public class tictactoe{
         1 = X (player)
         2 = O (AI)
         */
-        for(int i=0; i<3; i++){ 
+        for(int i=0; i<3; i++){
             for(int j=0; j<3; j++){
                 System.out.print("\t");
                 if(board[i][j] == 1){
-                    System.out.print("X");  
+                    System.out.print("X");
                 }
                 else if(board[i][j] == 2){
                     System.out.print("O");
