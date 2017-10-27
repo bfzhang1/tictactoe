@@ -6,9 +6,9 @@ public class tictactoe{
         int[][] board = new int[3][3];
         while(turns < 9){
             if(turns == 0){ //if it is the first turn, then it prints out the instruction board
-                System.out.println("[0 0]\t[0 1]\t[0 2]");
-                System.out.println("[1 0]\t[1 1]\t[1 2]");
-                System.out.println("[2 0]\t[2 1]\t[2 2]");
+                System.out.println("[0 0] [0 1] [0 2]");
+                System.out.println("[1 0] [1 1] [1 2]");
+                System.out.println("[2 0] [2 1] [2 2]");
             }
             else //otherwise it prints out the actual board
                 printBoard(board);
@@ -163,7 +163,6 @@ public class tictactoe{
         */
         for(int i=0; i<3; i++){
             for(int j=0; j<3; j++){
-                System.out.print("\t");
                 if(board[i][j] == 1){
                     System.out.print("X");
                 }
@@ -173,6 +172,7 @@ public class tictactoe{
                 else{
                     System.out.print(" ");
                 }
+                System.out.print(" ");
             }
             System.out.println();
         }
