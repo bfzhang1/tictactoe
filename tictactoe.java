@@ -44,15 +44,15 @@ public class tictactoe{
     public static void comTurn(int[][] board){
         //checks the rows if it can win or block you from winning
         for(int i=0; i<3; i++){
-            if(board[i][0] == board[i][1] && board[i][0] != 0){
+            if(board[i][0] == board[i][1] && board[i][0] != 0 && board[i][2] == 0){
                 board[i][2] = 2;
                 return;
             }
-            else if(board[i][1] == board[i][2] && board[i][1] != 0){
+            else if(board[i][1] == board[i][2] && board[i][1] != 0 && board[i][0] == 0){
                 board[i][0] = 2;
                 return;
             }
-            else if(board[i][0] == board[i][2] && board[i][0] != 0){
+            else if(board[i][0] == board[i][2] && board[i][0] != 0 && board[i][1] == 0){
                 board[i][1] = 2;
                 return;
             }
@@ -60,44 +60,44 @@ public class tictactoe{
 
         //checks the columns if it can win or block you from winning
         for(int j=0; j<3; j++){
-            if(board[0][j] == board[1][j] && board[0][j] != 0){
+            if(board[0][j] == board[1][j] && board[0][j] != 0 && board[2][j] == 0){
                 board[2][j] = 2;
                 return;
             }
-            else if(board[1][j] == board[2][j] && board[1][j] != 0){
+            else if(board[1][j] == board[2][j] && board[1][j] != 0 && board[0][j] == 0){
                 board[0][j] = 2;
                 return;
             }
-            else if(board[0][j] == board[2][j] && board[0][j] != 0){
+            else if(board[0][j] == board[2][j] && board[0][j] != 0 && board[1][j] == 0){
                 board[1][j] = 2;
                 return;
             }
         }
 
         //checks the left diagonal if it can win or block you from winning
-        if(board[0][0] == board[1][1] && board[0][0] != 0){
+        if(board[0][0] == board[1][1] && board[0][0] != 0 && board[2][2] == 0){
             board[2][2] = 2;
             return;
         }
-        if(board[1][1] == board[2][2] && board[1][1] != 0){
+        if(board[1][1] == board[2][2] && board[1][1] != 0 && board[0][0] == 0){
             board[0][0] = 2;
             return;
         }
-        if(board[0][0] == board[2][2] && board[0][0] != 0){
+        if(board[0][0] == board[2][2] && board[0][0] != 0 && board[1][1] == 0){
             board[1][1] = 2;
             return;
         }
 
         //checks the right diagonal if it can win or block you from winning
-        if(board[0][2] == board[1][1] && board[0][2] != 0){
+        if(board[0][2] == board[1][1] && board[0][2] != 0 && board[2][0] == 0){
             board[2][0] = 2;
             return;
         }
-        if(board[1][1] == board[2][0] && board[1][1] != 0){
+        if(board[1][1] == board[2][0] && board[1][1] != 0 && board[0][2] == 0){
             board[0][2] = 2;
             return;
         }
-        if(board[0][2] == board[2][0] && board[0][2] != 0){
+        if(board[0][2] == board[2][0] && board[0][2] != 0 && board[1][1] == 0){
             board[1][1] = 2;
             return;
         }
