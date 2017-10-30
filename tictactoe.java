@@ -2,9 +2,10 @@ import java.util.Scanner;
 public class tictactoe{
     public static void main(String[] args){
         Scanner input = new Scanner(System.in);
+        int turns = 0;
         int[][] board = new int[3][3];
-        
-        for(int turns = 0; turns < 9; turns++){
+
+        for(turns = 0; turns < 9; turns++){
             printBoard(board);
             if(turns % 2 == 0){
                 //player turn
@@ -13,7 +14,7 @@ public class tictactoe{
                 int col = input.nextInt();
                 board[row][col] = 1;
                 if(checkWin(board)){ //checks if the player wins
-                    System.out.println("You win!");
+                    System.out.println("\n\nYou win!");
                     break;
                 }
             }
@@ -22,14 +23,16 @@ public class tictactoe{
                 System.out.println("Deciding...");
                 board = comTurn(board);
                 if(checkWin(board)){ //checks if the A.I. wins
-                    System.out.println("You lose...");
+                    System.out.println("\n\nYou lose...");
                     break;
                 }
             }
+
+            System.out.println();
         }
-        
+
         if(turns >= 9)
-            System.out.println("It's a tie!");
+            System.out.println("\n\nIt's a tie!");
         printBoard(board);
     }
     public static int[][] comTurn(int[][] board){
