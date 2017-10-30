@@ -9,9 +9,13 @@ public class tictactoe{
             printBoard(board);
             if(turns % 2 == 0){
                 //player turn
-                System.out.println("Select a position, using coordinates. (Ex. 0 0 represents the top left, 1 2 represents the middle right.)");
-                int row = input.nextInt(); //gets the player input
-                int col = input.nextInt();
+                while(true){
+                    System.out.println("Select a position using the coordinates provided. (Make sure to follow the format displayed on the coordinates.)");
+                    int row = input.nextInt(); //gets the player input
+                    int col = input.nextInt();
+                    if(board[row][col] == 0)
+                        break;
+                }
                 board[row][col] = 1;
                 if(checkWin(board)){ //checks if the player wins
                     System.out.println("\n\nYou win!");
@@ -168,7 +172,7 @@ public class tictactoe{
                 }
                 System.out.print(" ");
             }
-            System.out.println();
+            System.out.println("\n");
         }
     }
 }
