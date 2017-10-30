@@ -5,41 +5,32 @@ public class tictactoe{
         int turns = 0;
         int[][] board = new int[3][3];
         while(turns < 9){
-            if(turns == 0){ //if it is the first turn, then it prints out the instruction board
-                System.out.println("[0 0] [0 1] [0 2]");
-                System.out.println("[1 0] [1 1] [1 2]");
-                System.out.println("[2 0] [2 1] [2 2]");
-            }
-            else //otherwise it prints out the actual board
-                printBoard(board);
-
-            //player turn
-            System.out.println("Select a position, using coordinates. (Ex. 0 0 represents the top left, 1 2 represents the middle right.)");
-            int row = input.nextInt(); //gets the player input
-            int col = input.nextInt();
-            board[row][col] = 1;
-            turns++;
-            if(checkWin(board)){ //checks if the player wins
-                System.out.println("You win!");
-                break;
-            }
-            if(turns >= 9){ //if the game somehow makes it to the end without anyone winning
-                break;
-            }
-
-            //com turn
             printBoard(board);
-            System.out.println("Deciding...");
-            comTurn(board);
-            turns++;
-            if(checkWin(board)){ //checks if the A.I. wins
-                System.out.println("You lose...");
-                break;
+            if(turns % 2 == 0){
+                //player turn
+                System.out.println("Select a position, using coordinates. (Ex. 0 0 represents the top left, 1 2 represents the middle right.)");
+                int row = input.nextInt(); //gets the player input
+                int col = input.nextInt();
+                board[row][col] = 1;
+                if(checkWin(board)){ //checks if the player wins
+                    System.out.println("You win!");
+                    break;
+                }
             }
+            else{
+                //com turn
+                System.out.println("Deciding...");
+                comTurn(board);
+                if(checkWin(board)){ //checks if the A.I. wins
+                    System.out.println("You lose...");
+                    break;
+                }
+            }
+            turns++;
         }
-        printBoard(board);
         if(turns >= 9)
             System.out.println("It's a tie!");
+        printBoard(board);
     }
     public static void comTurn(int[][] board){
         //checks the rows if it can win or block you from winning
