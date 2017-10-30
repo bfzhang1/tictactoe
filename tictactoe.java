@@ -32,7 +32,7 @@ public class tictactoe{
         }
 
         if(turns >= 9)
-            System.out.println("\n\nIt's a tie!");
+            System.out.println("\nIt's a tie!");
         printBoard(board);
     }
     public static int[][] comTurn(int[][] board){
