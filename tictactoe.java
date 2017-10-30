@@ -164,13 +164,13 @@ public class tictactoe{
         for(int i=0; i<3; i++){
             for(int j=0; j<3; j++){
                 if(board[i][j] == 1){
-                    System.out.print("X");
+                    System.out.print("  X  ");
                 }
                 else if(board[i][j] == 2){
-                    System.out.print("O");
+                    System.out.print("  O  ");
                 }
                 else{
-                    System.out.print(" ");
+                    System.out.print("[" + i + " " + j + "]");
                 }
                 System.out.print(" ");
             }
