@@ -5,6 +5,19 @@ public class tictactoe{
         int turns = 0;
         int[][] board = new int[3][3];
 
+        //decides who goes first randomly
+        int random = (int)(Math.random() * 2);
+        if(random == 0){
+            System.out.println("The player will go first.\n");    
+            playerFirst();
+        }
+        else{
+            System.out.println("The computer will go first.\n");
+            comFirst();
+        }
+    }
+    
+    public static void playerFirst(){
         for(turns = 0; turns < 9; turns++){
             printBoard(board);
             if(turns % 2 == 0){
@@ -39,6 +52,43 @@ public class tictactoe{
             System.out.println("\nIt's a tie!");
         printBoard(board);
     }
+    
+    public static void comFirst(){
+        for(turns = 0; turns < 9; turns++){
+            printBoard(board);
+            if(turns % 2 == 0){
+                //com turn
+                System.out.println("Deciding...");
+                board = comTurn(board);
+                if(checkWin(board)){ //checks if the A.I. wins
+                    System.out.println("\n\nYou lose...");
+                    break;
+                }
+            }
+            else{
+                //player turn
+                while(true){
+                    System.out.println("Select a position using the coordinates provided. (Make sure to follow the format displayed on the coordinates.)");
+                    int row = input.nextInt(); //gets the player input
+                    int col = input.nextInt();
+                    if(board[row][col] == 0)
+                        break;
+                }
+                board[row][col] = 1;
+                if(checkWin(board)){ //checks if the player wins
+                    System.out.println("\n\nYou win!");
+                    break;
+                }
+            }
+
+            System.out.println();
+        }
+
+        if(turns >= 9)
+            System.out.println("\nIt's a tie!");
+        printBoard(board);
+    }
+    
     public static int[][] comTurn(int[][] board){
         //checks the rows if it can win or block you from winning
         for(int i=0; i<3; i++){
